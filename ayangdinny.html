@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesan DOCTYPE & Popup dengan Animasi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f8f9fa;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: Consolas, monospace;
+      max-width: 600px;
+      margin: auto;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      opacity: 0;
+      transition: opacity 1s ease-in-out; /* Efek animasi */
+    }
+    pre.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h2>Slide Pesan dalam Bentuk Kode</h2>
+  <pre id="pesanBox">&lt;!DOCTYPE html&gt;</pre>
+
+  <script>
+    // Daftar pesan singkat dalam bentuk "kode"
+    const pesanList = [
+      "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Pesan 1</title>\n  </head>\n  <body>\n    Halo Dunia!\n  </body>\n</html>",
+      "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Pesan 2</title>\n  </head>\n  <body>\n    Tetap semangat belajar HTML!\n  </body>\n</html>",
+      "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Pesan 3</title>\n  </head>\n  <body>\n    Pesan ini muncul di halaman dan juga popup.\n  </body>\n</html>"
+    ];
+
+    let index = 0;
+    const pesanBox = document.getElementById("pesanBox");
+
+    function tampilkanPesan() {
+      // Hilangkan dulu (fade out)
+      pesanBox.classList.remove("show");
+
+      setTimeout(() => {
+        // Ganti teks setelah fade out
+        pesanBox.textContent = pesanList[index];
+        // Tampilkan lagi (fade in)
+        pesanBox.classList.add("show");
+        // Popup alert
+        alert(pesanList[index]);
+      }, 1000); // tunggu 1 detik untuk efek fade out
+    }
+
+    // Pertama kali ditampilkan
+    pesanBox.classList.add("show");
+
+    // Ganti pesan tiap 5 detik
+    setInterval(() => {
+      index = (index + 1) % pesanList.length;
+      tampilkanPesan();
+    }, 5000);
+  </script>
+</body>
+</html>
